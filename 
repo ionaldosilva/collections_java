@@ -1,0 +1,142 @@
+[33mcommit 97e4eede8ae5d728afe1cf9eda3f63eca5b8d959[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: Ionaldo Silva <ionaldo_araujo@hotmail.com>
+Date:   Wed Oct 4 17:38:57 2023 -0300
+
+    Atividade de ordenamento em list
+    
+    Signed-off-by: Ionaldo Silva <ionaldo_araujo@hotmail.com>
+
+[1mdiff --git a/bin/lists/ordenacao/pessoas/ComparatorPorAltura.class b/bin/lists/ordenacao/pessoas/ComparatorPorAltura.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..a520f4e[m
+Binary files /dev/null and b/bin/lists/ordenacao/pessoas/ComparatorPorAltura.class differ
+[1mdiff --git a/bin/lists/ordenacao/pessoas/OrdenacaoPessoas.class b/bin/lists/ordenacao/pessoas/OrdenacaoPessoas.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3c7436f[m
+Binary files /dev/null and b/bin/lists/ordenacao/pessoas/OrdenacaoPessoas.class differ
+[1mdiff --git a/bin/lists/ordenacao/pessoas/Pessoa.class b/bin/lists/ordenacao/pessoas/Pessoa.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dc10853[m
+Binary files /dev/null and b/bin/lists/ordenacao/pessoas/Pessoa.class differ
+[1mdiff --git a/bin/lists/ordenacao/pessoas/main.class b/bin/lists/ordenacao/pessoas/main.class[m
+[1mnew file mode 100644[m
+[1mindex 0000000..9881bb6[m
+Binary files /dev/null and b/bin/lists/ordenacao/pessoas/main.class differ
+[1mdiff --git a/src/lists/ordenacao/pessoas/ComparatorPorAltura.java b/src/lists/ordenacao/pessoas/ComparatorPorAltura.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..41833ec[m
+[1m--- /dev/null[m
+[1m+++ b/src/lists/ordenacao/pessoas/ComparatorPorAltura.java[m
+[36m@@ -0,0 +1,13 @@[m
+[32m+[m[32mpackage lists.ordenacao.pessoas;[m
+[32m+[m
+[32m+[m[32mimport java.util.Comparator;[m
+[32m+[m
+[32m+[m[32mpublic class ComparatorPorAltura implements Comparator<Pessoa>{[m
+[32m+[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public int compare(Pessoa p1, Pessoa p2) {[m
+[32m+[m[32m        // TODO Auto-generated method stub[m
+[32m+[m[32m        return Double.compare(p1.getAltura(), p2.getAltura());[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m}[m
+[1mdiff --git a/src/lists/ordenacao/pessoas/OrdenacaoPessoas.java b/src/lists/ordenacao/pessoas/OrdenacaoPessoas.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..dbdbab8[m
+[1m--- /dev/null[m
+[1m+++ b/src/lists/ordenacao/pessoas/OrdenacaoPessoas.java[m
+[36m@@ -0,0 +1,29 @@[m
+[32m+[m[32mpackage lists.ordenacao.pessoas;[m
+[32m+[m
+[32m+[m[32mimport java.util.ArrayList;[m
+[32m+[m[32mimport java.util.Collections;[m
+[32m+[m[32mimport java.util.List;[m
+[32m+[m
+[32m+[m[32mpublic class OrdenacaoPessoas {[m
+[32m+[m[41m    [m
+[32m+[m[32m    List<Pessoa> pessoalist;[m
+[32m+[m
+[32m+[m[32m    public OrdenacaoPessoas(){[m
+[32m+[m[32m        this.pessoalist = new ArrayList<>();[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public void adicinarPessoa(String nome, int idade, double altura){[m
+[32m+[m[32m        pessoalist.add(new Pessoa(nome, idade, altura));[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public List<Pessoa> ordenarPorIdade(){[m
+[32m+[m[32m        List<Pessoa> pessoasPorIdade = new ArrayList<>(pessoalist);[m
+[32m+[m[32m        Collections.sort(pessoasPorIdade);[m
+[32m+[m[32m        return pessoasPorIdade;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public List<Pessoa> ordenarPorAltura(){[m
+[32m+[m[32m        List<Pessoa> listPessoaAltura = new ArrayList<>(pessoalist);[m
+[32m+[m[32m        Collections.sort(listPessoaAltura, new ComparatorPorAltura());[m
+[32m+[m[32m        return listPessoaAltura;[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m
+[32m+[m[32m}[m
+[1mdiff --git a/src/lists/ordenacao/pessoas/Pessoa.java b/src/lists/ordenacao/pessoas/Pessoa.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..5e32d37[m
+[1m--- /dev/null[m
+[1m+++ b/src/lists/ordenacao/pessoas/Pessoa.java[m
+[36m@@ -0,0 +1,36 @@[m
+[32m+[m[32mpackage lists.ordenacao.pessoas;[m
+[32m+[m
+[32m+[m[32mimport java.util.Comparator;[m
+[32m+[m
+[32m+[m[32mpublic class Pessoa implements Comparable<Pessoa>{[m
+[32m+[m[32m    private String nome;[m
+[32m+[m[32m    private int idade;[m
+[32m+[m[32m    private double altura;[m
+[32m+[m
+[32m+[m[41m [m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public int compareTo(Pessoa p) {[m
+[32m+[m[32m        return Integer.compare(idade, p.getIdade());[m
+[32m+[m[32m    }[m
+[32m+[m[41m    [m
+[32m+[m[32m    public Pessoa(String nome, int idade, double altura){[m
+[32m+[m[32m        this.altura=altura;[m
+[32m+[m[32m        this.nome=nome;[m
+[32m+[m[32m        this.idade=idade;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public double getAltura() {[m
+[32m+[m[32m        return altura;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public int getIdade() {[m
+[32m+[m[32m        return idade;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    public String getNome() {[m
+[32m+[m[32m        return nome;[m
+[32m+[m[32m    }[m
+[32m+[m[32m    @Override[m
+[32m+[m[32m    public String toString() {[m
+[32m+[m[32m        return "[nome=" + nome + ", idade=" + idade + ", altura=" + altura + "]";[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
+[32m+[m
+[32m+[m
+[1mdiff --git a/src/lists/ordenacao/pessoas/main.java b/src/lists/ordenacao/pessoas/main.java[m
+[1mnew file mode 100644[m
+[1mindex 0000000..3458a97[m
+[1m--- /dev/null[m
+[1m+++ b/src/lists/ordenacao/pessoas/main.java[m
+[36m@@ -0,0 +1,16 @@[m
+[32m+[m[32mpackage lists.ordenacao.pessoas;[m
+[32m+[m
+[32m+[m[32mpublic class main {[m
+[32m+[m[41m [m
+[32m+[m[32m    public static void main(String[] args) {[m
+[32m+[m[32m        OrdenacaoPessoas ordenacaoPessoas = new OrdenacaoPessoas();[m
+[32m+[m[32m        ordenacaoPessoas.adicinarPessoa("nome 01", 23, 1.56);[m
+[32m+[m[32m        ordenacaoPessoas.adicinarPessoa("nome 02", 18, 1.73);[m
+[32m+[m[32m        ordenacaoPessoas.adicinarPessoa("nome 03", 26, 1.58);[m
+[32m+[m[32m        ordenacaoPessoas.adicinarPessoa("nome 04", 22, 1.68);[m
+[32m+[m[32m        ordenacaoPessoas.adicinarPessoa("nome 05", 46, 1.75);[m
+[32m+[m
+[32m+[m[32m        System.out.println(ordenacaoPessoas.ordenarPorIdade());[m
+[32m+[m[32m        System.out.println(ordenacaoPessoas.ordenarPorAltura());[m
+[32m+[m[32m    }[m
+[32m+[m[32m}[m
