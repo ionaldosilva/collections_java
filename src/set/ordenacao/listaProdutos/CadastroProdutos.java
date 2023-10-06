@@ -6,7 +6,7 @@ import java.util.SortedSet;
 import java.util.TreeSet;
 
 
-public class CadastroProdutos {
+public class CadastroProdutos{
     
     private Set<Produto> cadastroProdutos;
 
